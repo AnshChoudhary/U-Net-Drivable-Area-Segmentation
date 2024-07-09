@@ -186,10 +186,7 @@ with torch.no_grad():
         total_f1.append(f1)
 
         # Optionally, print scores for each image
-        # print(f'Image {val_loader.dataset.images[val_loader.dataset.indices[0]]}:')
-        # print(f'  IoU: {ious}')
-        # print(f'  Accuracy: {accuracy}')
-        # print(f'  F1-score: {f1}')
+        print(f"Image {val_loader.dataset.images[val_loader.dataset.indices[0]]}: IoU: {ious}, Accuracy: {accuracy}, F1-score: {f1}")
 
 # Compute average scores across all images
 avg_iou = np.nanmean(total_iou, axis=0)  # Average IoU per class
