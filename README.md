@@ -47,5 +47,22 @@ This repository contains the implementation of a U-Net model for drivable area s
     ```
 
 ## Results
-Include images or visualizations of your model predictions, evaluation metrics (IoU, accuracy, F1-score), and any relevant analysis of results.
+The predicted mask is generated from the model and compared to the ground truth mask in the following:
+
+![Predicted Mask](https://github.com/AnshChoudhary/U-Net-Drivable-Area-Segmentation/blob/main/results/unet3_0a0a0b1a-7c39d841.png)
+
+The result is vastly accurate in generating the mask for drivable area but looks extremely unstable and there aren't any defined boundaries. To overcome the above problems, the predicted mask was initially passed through some post processing such as the following:
+1. Morphological Cleanup: This helps to remove small noise and fill small holes in each frame's segmentation.
+2. Optical Flow Stabilization: This uses the movement between frames to create a more stable segmentation, reducing flickering.
+3. Temporal Smoothing: This averages the segmentation over several frames, further reducing fluctuations.
+4. Final Gaussian Blur: This provides a last bit of smoothing to the output. 
+
+The result of the postprocessed mask looked like the following:
+
+![PostProcessed](https://github.com/AnshChoudhary/U-Net-Drivable-Area-Segmentation/blob/main/results/pp.png?raw=true)
+
+The Post Processed Mask is still not the best solution to the problem at hand. Therefore, we apply DBSCAN to the form clusters based on the density of the pixels in the predicted masks and then create polygons using coutour and convex hulls that would fit the clusters. Clusters are selected on the basis of pixels belonging to each cluster (20 pixels minimum) and then polygons are drawn to fit the cluster with a maximum of 6 edges. 
+
+The result of DBSCAN + Polygon Fitting is depicted in the following:
+![DBSCAN+Polygon](https://github.com/AnshChoudhary/U-Net-Drivable-Area-Segmentation/blob/main/results/polygon_mask.png)
 
