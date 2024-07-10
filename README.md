@@ -1,5 +1,7 @@
 # Drivable Area Semantic Segmentation with U-Net
 
+![DBSCAN+Polygon](https://github.com/AnshChoudhary/U-Net-Drivable-Area-Segmentation/blob/main/results/polygon_mask.png)
+
 This repository contains the implementation of a U-Net model for drivable area semantic segmentation using the BDD100K dataset. The model is trained on 70,000 images and their corresponding colormap masks for drivable area. The model was trained on NVIDIA RTX A6000 with a VRAM of 48GB. The training lasts approximately 10 hours on the mentioned specs. 
 
 ## Overview
