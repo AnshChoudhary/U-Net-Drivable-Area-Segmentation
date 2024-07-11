@@ -48,6 +48,14 @@ This repository contains the implementation of a U-Net model for drivable area s
     python eval.py
     ```
 
+## Model Performance
+The trained model was tested on the validation set for the following evaluation metrics:
+
+- **Mean IoU score**: 0.9715
+- **Mean Accuracy**: 0.9753
+- **Mean F1 Score**: 0.9852
+
+
 ## Results
 The predicted mask is generated from the model and compared to the ground truth mask in the following:
 
